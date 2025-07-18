@@ -1,0 +1,24 @@
+{
+  "accuracy": 0.7862875799210992,
+  "features": [
+    "energy",
+    "sugars",
+    "saturated_fat",
+    "salt",
+    "fiber",
+    "proteins",
+    "fruits_vegetables_nuts"
+  ],
+  "n_samples": 36755,
+  "sklearn_version": "1.3.0",
+  "model_type": "RandomForestClassifier",
+  "target_names": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E"
+  ],
+  "created_with": "train_model.py",
+  "cleaned_like_notebook": true
+}
