@@ -1445,3 +1445,32 @@
         justify-content: center;
     }
 }
+
+
+/* ========================================
+   OVERLAY LINK POUR ÉVITER LIENS IMBRIQUÉS
+   ======================================== */
+
+.card-overlay-link {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    text-decoration: none;
+    color: transparent;
+    cursor: pointer;
+}
+
+.card-actions {
+    position: relative;
+    z-index: 2;
+    /* Au-dessus du lien overlay */
+}
+
+.card-actions .action-btn {
+    position: relative;
+    z-index: 3;
+    /* Encore plus haut pour être cliquable */
+}

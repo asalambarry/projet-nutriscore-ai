@@ -83,7 +83,6 @@ const ProductCard = ({
 
   return (
     <div className={`product-card-premium ${variant} ${className} ${isHealthy ? 'healthy' : ''}`}>
-      <Link to={`/products/${product._id}`} className="card-link">
 
         {/* Badge de qualité nutritionnelle */}
         {isHealthy && (
@@ -193,7 +192,6 @@ const ProductCard = ({
               to={`/products/${product._id}/edit`}
               className="action-btn edit"
               title="Modifier"
-              onClick={(e) => e.stopPropagation()}
             >
               <Edit size={16} />
             </Link>
@@ -201,7 +199,6 @@ const ProductCard = ({
               to={`/products/${product._id}`}
               className="action-btn view"
               title="Voir détails"
-              onClick={(e) => e.stopPropagation()}
             >
               <Eye size={16} />
             </Link>
@@ -210,7 +207,9 @@ const ProductCard = ({
 
         {/* Indicateur de hover */}
         <div className="hover-indicator"></div>
-      </Link>
+
+        {/* Zone cliquable pour voir le détail */}
+        <Link to={`/products/${product._id}`} className="card-overlay-link" aria-label={`Voir les détails de ${product.name}`}></Link>
     </div>
   );
 };

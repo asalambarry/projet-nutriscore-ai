@@ -1,6 +1,5 @@
 
 from flask import jsonify, request
-
 from models import PredictionModel, ProductModel, StatsModel
 from utils import (create_nutriscore_object, format_product_response,
                    predict_nutriscore, search_openfoodfacts,
@@ -295,16 +294,29 @@ def register_routes(app):
 
             # Si des valeurs nutritionnelles sont fournies, refaire la prédiction
             nutrition_fields = ['energy', 'sugars', 'saturated_fat', 'salt', 'fiber', 'proteins', 'fruits_vegetables_nuts']
-            has_nutrition_data = all(field in data for field in nutrition_fields)
 
+            # Vérifier si au moins un champ nutritionnel est fourni
+            nutrition_fields_provided = [field for field in nutrition_fields if field in data]
+            has_nutrition_data = len(nutrition_fields_provided) > 0
+
+            # Si des champs nutritionnels sont fournis mais pas tous, on garde les anciennes valeurs
             if has_nutrition_data:
-                # Validation des données nutritionnelles
-                is_valid, errors = validate_nutrition_data(data)
+                # Compléter avec les valeurs existantes si nécessaire
+                nutrition_data = {}
+                for field in nutrition_fields:
+                    if field in data:
+                        nutrition_data[field] = data[field]
+                    else:
+                        # Prendre la valeur existante
+                        nutrition_data[field] = existing_product.get('nutrition', {}).get(field, 0)
+
+                # Validation des données nutritionnelles complètes
+                is_valid, errors = validate_nutrition_data(nutrition_data)
                 if not is_valid:
                     return jsonify({"error": "Données invalides", "details": errors}), 400
 
-                # Nouvelle prédiction
-                nutrition_values = [data[field] for field in nutrition_fields]
+                # Nouvelle prédiction avec les données complètes
+                nutrition_values = [nutrition_data[field] for field in nutrition_fields]
                 predicted_grade, probabilities = predict_nutriscore(
                     nutrition_values,
                     save_prediction=True,
@@ -312,15 +324,7 @@ def register_routes(app):
                 )
 
                 # Restructurer les données nutritionnelles dans l'objet nutrition
-                data['nutrition'] = {
-                    "energy": data['energy'],
-                    "sugars": data['sugars'],
-                    "saturated_fat": data['saturated_fat'],
-                    "salt": data['salt'],
-                    "fiber": data['fiber'],
-                    "proteins": data['proteins'],
-                    "fruits_vegetables_nuts": data['fruits_vegetables_nuts']
-                }
+                data['nutrition'] = nutrition_data
 
                 # Supprimer les champs nutritionnels du niveau racine
                 for field in nutrition_fields:
@@ -455,7 +459,7 @@ def register_routes(app):
 
     @app.route('/api/products/<product_id>/recommendations', methods=['GET'])
     def get_product_recommendations(product_id):
-        
+
         try:
             # Récupérer le produit actuel
             current_product = ProductModel.get_by_id(product_id)
