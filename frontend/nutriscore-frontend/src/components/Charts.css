@@ -1,0 +1,908 @@
+/* Container principal des graphiques */
+
+.chart-container {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1), 0 4px 16px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    margin-bottom: 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    animation: chartFadeIn 0.8s ease-out;
+}
+
+.chart-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
+    border-radius: 20px 20px 0 0;
+}
+
+.chart-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.15), 0 8px 24px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+@keyframes chartFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.chart-header {
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid #f1f3f4;
+    padding-bottom: 1rem;
+}
+
+.chart-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #2c3e50;
+    margin: 0 0 0.5rem 0;
+}
+
+.chart-subtitle {
+    color: #7f8c8d;
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.bar-chart {
+    display: flex;
+    align-items: end;
+    justify-content: space-around;
+    height: 300px;
+    padding: 2rem;
+    background: linear-gradient(180deg, rgba(102, 126, 234, 0.05) 0%, rgba(255, 255, 255, 0.1) 100%);
+    border-radius: 16px;
+    margin-top: 1rem;
+}
+
+.bar-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    flex: 1;
+    max-width: 80px;
+}
+
+.bar-wrapper {
+    width: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    height: 100%;
+}
+
+.bar-fill {
+    width: 100%;
+    border-radius: 8px 8px 0 0;
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    margin-top: auto;
+    min-height: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    animation: barGrow 1.2s ease-out;
+}
+
+.bar-fill::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 8px 8px 0 0;
+}
+
+.bar-value {
+    position: absolute;
+    top: -2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1rem;
+    font-weight: 700;
+    color: #2c3e50;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    min-width: 2rem;
+    text-align: center;
+}
+
+.bar-label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.nutri-badge {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    color: white;
+    font-size: 1.25rem;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.nutri-text {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #7f8c8d;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+@keyframes barGrow {
+    0% {
+        height: 0;
+        opacity: 0;
+    }
+    50% {
+        opacity: 0.7;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+
+/* Couleurs spécifiques pour chaque score Nutri */
+
+.bar-item:nth-child(1) .bar-fill {
+    /* Score A */
+    background: linear-gradient(180deg, #00a550 0%, #52c41a 100%);
+}
+
+.bar-item:nth-child(2) .bar-fill {
+    /* Score B */
+    background: linear-gradient(180deg, #85c440 0%, #95d73d 100%);
+}
+
+.bar-item:nth-child(3) .bar-fill {
+    /* Score C */
+    background: linear-gradient(180deg, #f9b000 0%, #ffd23f 100%);
+}
+
+.bar-item:nth-child(4) .bar-fill {
+    /* Score D */
+    background: linear-gradient(180deg, #ff8c00 0%, #ffa940 100%);
+}
+
+.bar-item:nth-child(5) .bar-fill {
+    /* Score E */
+    background: linear-gradient(180deg, #e63946 0%, #ff6b7a 100%);
+}
+
+.horizontal-bar-chart {
+    display: none !important;
+}
+
+.horizontal-bar-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0.75rem;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    animation: slideInLeft 0.6s ease-out;
+}
+
+.horizontal-bar-item:hover {
+    transform: translateX(8px);
+    box-shadow: 0 4px 16px rgba(102, 126, 234, 0.2);
+    background: rgba(255, 255, 255, 0.95);
+}
+
+.item-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+.item-name {
+    color: #2c3e50;
+    font-weight: 600;
+    flex: 1;
+}
+
+.item-count {
+    color: white;
+    font-weight: 700;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 0.25rem 0.75rem;
+    border-radius: 16px;
+    font-size: 0.8rem;
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.horizontal-bar-wrapper {
+    height: 12px;
+    background: rgba(241, 243, 244, 0.8);
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.horizontal-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+    border-radius: 8px;
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    animation: barExpand 1s ease-out;
+}
+
+.horizontal-bar-fill::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 8px 8px 0 0;
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes barExpand {
+    0% {
+        width: 0;
+        opacity: 0;
+    }
+    50% {
+        opacity: 0.7;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.vertical-bar-chart,
+.chart-vertical-bars {
+    display: flex !important;
+    align-items: end !important;
+    justify-content: space-around !important;
+    height: 320px !important;
+    padding: 2rem !important;
+    background: linear-gradient(180deg, rgba(102, 126, 234, 0.05) 0%, rgba(255, 255, 255, 0.1) 100%) !important;
+    border-radius: 16px !important;
+    margin-top: 1rem !important;
+    position: relative !important;
+    overflow: visible !important;
+}
+
+.vertical-bar-item {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 1rem !important;
+    flex: 1 !important;
+    max-width: 120px !important;
+}
+
+.vertical-bar-wrapper {
+    width: 80px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    position: relative !important;
+    height: 100% !important;
+}
+
+.vertical-bar-fill {
+    width: 100% !important;
+    border-radius: 12px 12px 0 0 !important;
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    position: relative !important;
+    margin-top: auto !important;
+    min-height: 30px !important;
+    background: linear-gradient(180deg, #667eea 0%, #764ba2 50%, #f093fb 100%) !important;
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3), inset 0 2px 0 rgba(255, 255, 255, 0.2) !important;
+    animation: brandBarGrow 1.2s ease-out !important;
+    animation-fill-mode: both !important;
+}
+
+.vertical-bar-fill::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 12px 12px 0 0;
+}
+
+.vertical-bar-fill:hover {
+    transform: scaleY(1.05) scaleX(1.1);
+    box-shadow: 0 12px 30px rgba(102, 126, 234, 0.4), inset 0 2px 0 rgba(255, 255, 255, 0.3);
+}
+
+.vertical-bar-value {
+    position: absolute;
+    top: -2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #2c3e50;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 0.4rem 0.8rem;
+    border-radius: 25px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    min-width: 2.5rem;
+    text-align: center;
+    border: 2px solid rgba(102, 126, 234, 0.2);
+}
+
+.vertical-bar-label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    width: 100%;
+}
+
+.brand-name {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #2c3e50;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 0.5rem 0.75rem;
+    border-radius: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    text-transform: capitalize;
+    letter-spacing: 0.3px;
+    width: 100%;
+    word-wrap: break-word;
+    hyphens: auto;
+}
+
+@keyframes brandBarGrow {
+    0% {
+        height: 0;
+        opacity: 0;
+        transform: scaleY(0);
+    }
+    50% {
+        opacity: 0.7;
+    }
+    100% {
+        opacity: 1;
+        transform: scaleY(1);
+    }
+}
+
+
+/* Couleurs graduelles pour les différentes barres de marques */
+
+.vertical-bar-item:nth-child(1) .vertical-bar-fill {
+    background: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
+}
+
+.vertical-bar-item:nth-child(2) .vertical-bar-fill {
+    background: linear-gradient(180deg, #f093fb 0%, #f5576c 100%);
+}
+
+.vertical-bar-item:nth-child(3) .vertical-bar-fill {
+    background: linear-gradient(180deg, #4facfe 0%, #00f2fe 100%);
+}
+
+.vertical-bar-item:nth-child(4) .vertical-bar-fill {
+    background: linear-gradient(180deg, #43e97b 0%, #38f9d7 100%);
+}
+
+.vertical-bar-item:nth-child(5) .vertical-bar-fill {
+    background: linear-gradient(180deg, #fa709a 0%, #fee140 100%);
+}
+
+
+/* Matrice de corrélation */
+
+.correlation-matrix {
+    overflow-x: auto;
+}
+
+.correlation-legend {
+    display: flex;
+    gap: 1rem;
+    margin-top: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.75rem;
+    color: #7f8c8d;
+}
+
+.legend-color {
+    width: 12px;
+    height: 12px;
+    border-radius: 2px;
+}
+
+.correlation-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-top: 1rem;
+    min-width: 600px;
+}
+
+.correlation-row {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+
+.nutrient-label {
+    min-width: 120px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: #2c3e50;
+    padding: 8px;
+    background: #f8f9fa;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.correlation-cells {
+    display: flex;
+    gap: 2px;
+    flex: 1;
+}
+
+.correlation-cell {
+    width: 60px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    cursor: help;
+    transition: transform 0.2s ease;
+}
+
+.correlation-cell:hover {
+    transform: scale(1.1);
+    z-index: 1;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.correlation-value {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: white;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+
+/* Distribution des nutriments - VERSION GRAPHIQUE AMÉLIORÉE */
+
+.nutrient-distribution .chart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.distribution-stats {
+    display: flex;
+    gap: 0.75rem;
+    font-size: 0.85rem;
+    flex-wrap: wrap;
+}
+
+.distribution-stats span {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.histogram {
+    display: flex;
+    align-items: end;
+    gap: 4px;
+    height: 250px;
+    padding: 2rem 1rem 1rem 1rem;
+    background: linear-gradient(180deg, rgba(102, 126, 234, 0.05) 0%, rgba(255, 255, 255, 0.1) 100%);
+    border-radius: 16px;
+    position: relative;
+}
+
+.histogram::before {
+    content: '';
+    position: absolute;
+    left: 1rem;
+    bottom: 0;
+    right: 1rem;
+    height: 1px;
+    background: rgba(102, 126, 234, 0.2);
+}
+
+.histogram-bar {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    position: relative;
+    min-width: 20px;
+}
+
+.histogram-fill {
+    width: 80%;
+    background: linear-gradient(180deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+    border-radius: 6px 6px 0 0;
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    margin-top: auto;
+    min-height: 4px;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    position: relative;
+    animation: histogramGrow 1s ease-out;
+}
+
+.histogram-fill::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 6px 6px 0 0;
+}
+
+.histogram-bar:hover .histogram-fill {
+    transform: scaleY(1.05);
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.histogram-label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    margin-top: 12px;
+    font-size: 0.7rem;
+    position: absolute;
+    bottom: -3rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+}
+
+.range-label {
+    color: #7f8c8d;
+    font-weight: 500;
+    text-align: center;
+    writing-mode: horizontal-tb;
+    font-size: 0.65rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+}
+
+.count-label {
+    color: #2c3e50;
+    font-weight: 700;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 2px 6px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    font-size: 0.7rem;
+}
+
+@keyframes histogramGrow {
+    0% {
+        height: 0;
+        opacity: 0;
+    }
+    50% {
+        opacity: 0.7;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+
+/* Cartes de statistiques */
+
+.stats-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.stat-card {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1), 0 4px 16px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    animation: cardSlideIn 0.6s ease-out;
+}
+
+.stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
+    border-radius: 20px 20px 0 0;
+}
+
+.stat-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2), 0 8px 32px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.stat-icon {
+    font-size: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 20px;
+    box-shadow: 0 8px 16px rgba(102, 126, 234, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    position: relative;
+    overflow: hidden;
+    animation: iconPulse 2s ease-in-out infinite;
+}
+
+.stat-icon::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    animation: iconShine 3s infinite;
+}
+
+.stat-content {
+    flex: 1;
+}
+
+.stat-value {
+    font-size: 2rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #2c3e50, #34495e);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+}
+
+.stat-label {
+    color: #7f8c8d;
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+@keyframes cardSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes iconPulse {
+    0%,
+    100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+@keyframes iconShine {
+    0% {
+        transform: translateX(-100%) translateY(-100%) rotate(45deg);
+    }
+    100% {
+        transform: translateX(100%) translateY(100%) rotate(45deg);
+    }
+}
+
+
+/* Skeleton de chargement */
+
+.chart-skeleton {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e2e8f0;
+    margin-bottom: 1.5rem;
+    animation: pulse 2s infinite;
+}
+
+.skeleton-header {
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid #f1f3f4;
+    padding-bottom: 1rem;
+}
+
+.skeleton-title {
+    height: 20px;
+    background: #f1f3f4;
+    border-radius: 4px;
+    width: 200px;
+    margin-bottom: 0.5rem;
+}
+
+.skeleton-subtitle {
+    height: 14px;
+    background: #f1f3f4;
+    border-radius: 4px;
+    width: 300px;
+}
+
+.skeleton-body {
+    height: 200px;
+    display: flex;
+    align-items: end;
+}
+
+.skeleton-bars {
+    display: flex;
+    align-items: end;
+    gap: 8px;
+    width: 100%;
+    height: 100%;
+}
+
+.skeleton-bar {
+    flex: 1;
+    background: linear-gradient(180deg, #f1f3f4, #e2e8f0);
+    border-radius: 4px 4px 0 0;
+    animation: wave 2s infinite;
+}
+
+@keyframes pulse {
+    0%,
+    100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.7;
+    }
+}
+
+@keyframes wave {
+    0%,
+    100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+
+/* Responsive */
+
+@media (max-width: 768px) {
+    .chart-container {
+        padding: 1rem;
+    }
+    .correlation-grid {
+        min-width: 500px;
+    }
+    .nutrient-label {
+        min-width: 80px;
+        font-size: 0.7rem;
+    }
+    .correlation-cell {
+        width: 40px;
+        height: 30px;
+    }
+    .correlation-value {
+        font-size: 0.6rem;
+    }
+    .stats-cards {
+        grid-template-columns: 1fr;
+    }
+    .bar-label {
+        min-width: 120px;
+    }
+    .nutri-text {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .chart-header {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    .distribution-stats {
+        gap: 0.5rem;
+    }
+    .correlation-legend {
+        gap: 0.5rem;
+    }
+    .legend-item {
+        font-size: 0.7rem;
+    }
+}

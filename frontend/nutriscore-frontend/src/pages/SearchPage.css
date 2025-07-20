@@ -1,0 +1,517 @@
+/* ===========================================
+   PAGE RECHERCHE - DESIGN PREMIUM
+   =========================================== */
+
+.search-page {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    padding: 2rem 1rem;
+}
+
+
+/* ===========================================
+   HEADER DE RECHERCHE
+   =========================================== */
+
+.search-header {
+    max-width: 1200px;
+    margin: 0 auto 3rem auto;
+    text-align: center;
+    padding: 2rem;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.85));
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 25px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+    animation: slideInDown 0.6s ease-out;
+}
+
+.search-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin: 0 0 1rem 0;
+    font-size: 2.5rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #2d3748, #4a5568);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1.2;
+}
+
+.search-query {
+    margin: 0 0 1.5rem 0;
+    font-size: 1.25rem;
+    color: #667eea;
+    font-weight: 600;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.05));
+    padding: 0.75rem 1.5rem;
+    border-radius: 15px;
+    display: inline-block;
+    border: 1px solid rgba(102, 126, 234, 0.2);
+}
+
+.search-stats {
+    margin: 0;
+}
+
+.results-count {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(16, 185, 129, 0.05));
+    color: #059669;
+    border: 1px solid rgba(16, 185, 129, 0.2);
+    border-radius: 12px;
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+
+/* ===========================================
+   RÉSULTATS DE RECHERCHE
+   =========================================== */
+
+.search-results {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.search-footer {
+    text-align: center;
+    padding: 2rem;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.7), rgba(248, 250, 252, 0.5));
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.search-footer p {
+    margin: 0 0 0.5rem 0;
+    color: #64748b;
+    font-size: 0.95rem;
+}
+
+.search-tip {
+    background: linear-gradient(135deg, rgba(243, 156, 18, 0.1), rgba(230, 126, 34, 0.05));
+    color: #e67e22;
+    padding: 0.75rem 1.25rem;
+    border-radius: 12px;
+    border: 1px solid rgba(243, 156, 18, 0.2);
+    display: inline-block;
+    font-weight: 600;
+}
+
+
+/* ===========================================
+   ÉTATS VIDES ET ERREURS
+   =========================================== */
+
+.loading-container,
+.error-container,
+.empty-search-container,
+.no-results-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 4rem 2rem;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.85));
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 25px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.loading-spinner-large {
+    width: 60px;
+    height: 60px;
+    border: 4px solid rgba(102, 126, 234, 0.1);
+    border-left: 4px solid #667eea;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 2rem;
+}
+
+.loading-text {
+    margin: 0;
+    color: #64748b;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.error-icon,
+.empty-search-icon,
+.no-results-icon {
+    color: #64748b;
+    margin-bottom: 2rem;
+    opacity: 0.6;
+}
+
+.error-container .error-icon {
+    color: #e74c3c;
+}
+
+.error-container h2,
+.empty-search-container h2,
+.no-results-container h2 {
+    margin: 0 0 1rem 0;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #2d3748;
+}
+
+.error-container p,
+.empty-search-container p,
+.no-results-container p {
+    margin: 0 0 2rem 0;
+    color: #64748b;
+    font-size: 1.1rem;
+    max-width: 500px;
+    line-height: 1.6;
+}
+
+
+/* ===========================================
+   SUGGESTIONS ET ACTIONS
+   =========================================== */
+
+.search-suggestions {
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.08), rgba(59, 130, 246, 0.04));
+    border: 1px solid rgba(59, 130, 246, 0.2);
+    border-radius: 15px;
+    padding: 2rem;
+    margin: 2rem 0;
+    text-align: left;
+    max-width: 400px;
+}
+
+.search-suggestions h3 {
+    margin: 0 0 1rem 0;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #2563eb;
+}
+
+.search-suggestions ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.search-suggestions li {
+    margin: 0.75rem 0;
+    padding-left: 1.5rem;
+    color: #4a5568;
+    font-size: 0.95rem;
+    position: relative;
+}
+
+.search-suggestions li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: #2563eb;
+    font-weight: bold;
+}
+
+.search-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+
+/* ===========================================
+   BOUTONS
+   =========================================== */
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 15px;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s ease;
+}
+
+.btn:hover::before {
+    left: 100%;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgba(102, 126, 234, 0.4);
+}
+
+.btn-ghost {
+    background: rgba(255, 255, 255, 0.9);
+    color: #4a5568;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.btn-ghost:hover {
+    background: rgba(255, 255, 255, 1);
+    color: #2d3748;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+
+/* ===========================================
+   ANIMATIONS
+   =========================================== */
+
+@keyframes slideInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* ===========================================
+   RESPONSIVE DESIGN
+   =========================================== */
+
+@media (max-width: 768px) {
+    .search-page {
+        padding: 1rem 0.5rem;
+    }
+    .search-header {
+        margin-bottom: 2rem;
+        padding: 1.5rem;
+        border-radius: 20px;
+    }
+    .search-title {
+        font-size: 2rem;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    .search-query {
+        font-size: 1.1rem;
+        padding: 0.5rem 1rem;
+    }
+    .products-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    .search-actions {
+        flex-direction: column;
+        width: 100%;
+    }
+    .btn {
+        width: 100%;
+        justify-content: center;
+        padding: 0.875rem 1.5rem;
+    }
+    .search-suggestions {
+        padding: 1.5rem;
+        margin: 1.5rem 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .search-header {
+        padding: 1rem;
+    }
+    .search-title {
+        font-size: 1.75rem;
+    }
+    .search-query {
+        font-size: 1rem;
+        display: block;
+        margin: 0 0 1rem 0;
+    }
+    .loading-container,
+    .error-container,
+    .empty-search-container,
+    .no-results-container {
+        padding: var(--space-xl) var(--space-lg);
+    }
+    .search-suggestions {
+        text-align: center;
+    }
+    .search-suggestions ul {
+        text-align: left;
+    }
+}
+
+
+/* ===========================================
+   RESPONSIVE DESIGN - MOBILE FIRST
+   =========================================== */
+
+
+/* Extra Small devices (phones, less than 576px) */
+
+@media (max-width: 575.98px) {
+    .search-page {
+        padding: var(--space-md) var(--space-sm);
+    }
+    .search-header {
+        margin: 0 auto var(--space-xl) auto;
+        padding: var(--space-lg);
+        border-radius: var(--radius-lg);
+    }
+    .search-title {
+        font-size: clamp(1.5rem, 6vw, 2rem);
+        flex-direction: column;
+        gap: var(--space-sm);
+    }
+    .search-query {
+        font-size: var(--font-size-base);
+        padding: var(--space-sm) var(--space-md);
+        border-radius: var(--radius-md);
+        margin-bottom: var(--space-md);
+    }
+    .search-new-form {
+        flex-direction: column;
+        gap: var(--space-md);
+    }
+    .search-new-button {
+        width: 100%;
+        min-height: 44px;
+    }
+    .search-stats {
+        flex-direction: column;
+        text-align: center;
+        gap: var(--space-sm);
+    }
+    .stats-highlight {
+        font-size: var(--font-size-lg);
+    }
+    .results-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-md);
+        padding: 0;
+    }
+    .search-suggestions {
+        padding: var(--space-lg);
+        text-align: center;
+    }
+    .search-suggestions h3 {
+        font-size: var(--font-size-lg);
+    }
+    .search-suggestions ul {
+        text-align: left;
+        padding-left: var(--space-md);
+    }
+}
+
+
+/* Small devices (landscape phones, 576px and up) */
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+    .search-header {
+        padding: var(--space-xl);
+    }
+    .search-title {
+        font-size: clamp(1.75rem, 5vw, 2.25rem);
+    }
+    .results-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-lg);
+    }
+    .search-new-form {
+        max-width: 100%;
+    }
+}
+
+
+/* Medium devices (tablets, 768px and up) */
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .results-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-lg);
+    }
+    .search-title {
+        font-size: clamp(2rem, 4vw, 2.5rem);
+    }
+}
+
+
+/* Large devices (desktops, 992px and up) */
+
+@media (min-width: 992px) {
+    .results-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--space-xl);
+    }
+    .search-page {
+        padding: var(--space-xl) var(--space-lg);
+    }
+}
+
+
+/* Extra large devices (large desktops, 1200px and up) */
+
+@media (min-width: 1200px) {
+    .results-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    .search-page {
+        padding: var(--space-2xl) var(--space-xl);
+    }
+}
