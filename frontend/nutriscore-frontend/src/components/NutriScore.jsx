@@ -1,5 +1,3 @@
-
-
 import { getNutriScoreColor, getNutriScoreText } from '../services/api';
 import './NutriScore.css';
 
@@ -15,7 +13,7 @@ const NutriScore = ({
     probabilities = {},
     size = 'md',
     showDetails = false,
-    showProbabilities = false,
+    // showProbabilities = false,
     className = ''
 }) => {
     const gradeUpper = normalizeGrade(grade);
@@ -52,7 +50,7 @@ const NutriScore = ({
             </div>
 
             {/* Détails des probabilités */}
-            {showProbabilities && probabilities && (
+            {/* {showProbabilities && probabilities && (
                 <div className="nutri-score-probabilities">
                     <h4 className="probabilities-title">Probabilités détaillées</h4>
                     <div className="probabilities-list">
@@ -88,7 +86,7 @@ const NutriScore = ({
                         ))}
                     </div>
                 </div>
-            )}
+            )} */}
         </div>
     );
 };

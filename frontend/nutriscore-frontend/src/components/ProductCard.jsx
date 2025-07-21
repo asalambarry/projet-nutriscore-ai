@@ -84,6 +84,33 @@ const ProductCard = ({
   return (
     <div className={`product-card-premium ${variant} ${className} ${isHealthy ? 'healthy' : ''}`}>
 
+        {/* Actions en haut à droite */}
+        {showActions && (
+          <div className="card-actions card-actions-top">
+            <button
+              onClick={handleDelete}
+              className="action-btn delete"
+              title="Supprimer"
+            >
+              <Trash2 size={16} />
+            </button>
+            <Link
+              to={`/products/${product._id}/edit`}
+              className="action-btn edit"
+              title="Modifier"
+            >
+              <Edit size={16} />
+            </Link>
+            <Link
+              to={`/products/${product._id}`}
+              className="action-btn view"
+              title="Voir détails"
+            >
+              <Eye size={16} />
+            </Link>
+          </div>
+        )}
+
         {/* Badge de qualité nutritionnelle */}
         {isHealthy && (
           <div className="quality-badge">
@@ -177,33 +204,6 @@ const ProductCard = ({
             </div>
           )}
         </div>
-
-        {/* Actions (si activées) */}
-        {showActions && (
-          <div className="card-actions">
-            <button
-              onClick={handleDelete}
-              className="action-btn delete"
-              title="Supprimer"
-            >
-              <Trash2 size={16} />
-            </button>
-            <Link
-              to={`/products/${product._id}/edit`}
-              className="action-btn edit"
-              title="Modifier"
-            >
-              <Edit size={16} />
-            </Link>
-            <Link
-              to={`/products/${product._id}`}
-              className="action-btn view"
-              title="Voir détails"
-            >
-              <Eye size={16} />
-            </Link>
-          </div>
-        )}
 
         {/* Indicateur de hover */}
         <div className="hover-indicator"></div>
